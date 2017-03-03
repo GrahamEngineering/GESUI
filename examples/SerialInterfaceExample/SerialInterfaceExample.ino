@@ -21,7 +21,7 @@
 		
 */
 
-SerialUI ui = SerialUI("gesui", "Welcome to the GESUI Example"); // Set a customized banner to be shown
+SerialUI ui = SerialUI("gesui", "Welcome to the GESUI Example\n\tType help to get a list of commands"); // Set a customized banner to be shown
 
 Fire blinkPeriod = Fire(1000);			// Set the led to blink every 1000ms
 Fire blinkDuration = Fire(100);			// Set the duration of the blink to 100ms
