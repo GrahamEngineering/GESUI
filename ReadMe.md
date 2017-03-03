@@ -1,6 +1,6 @@
 # Graham Engineering Serial User Interface (gesui)
 
-A simple user interface for serial input/output via commands with callback functions via function pointers
+A simple Arduino/ESP8266/NodeMCU user interface for serial input/output via commands with callback functions via function pointers
 * Author: matthew.j.graham@gmail.com
 * Initial Build: 3 Mar 2017
 * Documentation Update: 3 Mar 2017
