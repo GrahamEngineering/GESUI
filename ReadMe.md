@@ -97,7 +97,7 @@ This command should be called on every loop iteration to check for user input vi
 * _Currently serialEvent() is not supported on ESP8266 (3 Mar 2017) so this is the way it is.  Deal with it._
 * _Write your code in a non-blocking way -- avoid use of delay()_
 
-Example:
+__Example:__
 ```
 GESUI myUI = GESUI();
 
@@ -170,3 +170,7 @@ void showVal()
 	Serial.println("The value of myInt is: " + String(myInt, DEC));
 }
 ```
+## Note
+Gesui translates to "ditch" or "sewage" from Japanese.  That's what this software is.  Sewage.
+
+	_even sewage is a solution to some problems_
