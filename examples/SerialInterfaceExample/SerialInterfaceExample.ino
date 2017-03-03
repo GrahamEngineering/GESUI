@@ -1,4 +1,4 @@
-#include <SerialUI.h>
+#include <GESUI.h>
 #include <Fire.h>
 
 /*
@@ -21,7 +21,7 @@
 		
 */
 
-SerialUI ui = SerialUI("gesui", "Welcome to the GESUI Example\n\tType help to get a list of commands"); // Set a customized banner to be shown
+GESUI ui = GESUI("gesui", "Welcome to the GESUI Example\n\tType help to get a list of commands"); // Set a customized banner to be shown
 
 Fire blinkPeriod = Fire(1000);			// Set the led to blink every 1000ms
 Fire blinkDuration = Fire(100);			// Set the duration of the blink to 100ms
@@ -33,7 +33,7 @@ void setup()
 	Serial.begin(115200);										// Start Serial
 	while (!Serial){}											// Wait for Serial to start
 	Serial.println("");											// Print a blank line to get rid of any garbage that may exist
-	ui.init();		 											// Show the SerialUI banner
+	ui.init();		 											// Show the GESUI banner
 	ui.addCmd("enableBlink", enableBlink);						// Add serial command to enable blink
 	ui.addCmd("removeThisCommand", removeThisCommand);			// An example of a command that can be removed by the user
 	ui.addCmd("disableBlink", disableBlink);					// Add serial command to disbale blink
