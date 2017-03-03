@@ -18,16 +18,16 @@ class SerialUI
 	public:
 		SerialUI();
 		SerialUI(String);
-		void passFunction(uiFunctionPointer functionPointer) ;
+		SerialUI(String, String);
 		void serialRead();
 		void addCmd(String, uiFunctionPointer);
 		void rmCmd(String);
-		void init();
+		void init(bool QuickInit = false);
 		
 
 	private:
 		static const int cmdCount = 10;
-		
+		String banner = "Graham Engineering Serial UI - Version 0.2";
 		uiPointer pointerList[cmdCount];
 		void analyzeInput(String);
 		String incomingString = "";

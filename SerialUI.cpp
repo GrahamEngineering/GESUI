@@ -4,24 +4,38 @@
 SerialUI::SerialUI()
 {
 	// instantiate object
+	// Serial output isn't called because the object should be instantiated before Serial.begin() is called.
+	//	User can manually call SerialUI.init() to show initial command prompt and banner
 }
 
 SerialUI::SerialUI(String p)
 {
-	// instantiate object
+	// Allow the capability to set a command prompt word (instead of default 'gesui')
 	prompt = p + "> ";
 }
 
-void SerialUI::init()
+SerialUI::SerialUI(String p, String b)
 {
-	Serial.println("Graham Engineering Serial UI - Version 0.2");
-	Serial.print(prompt);
+	// Set a custom command prompt and banner
+	banner = b;
+	prompt = p;
+	
+	// Format the prompt to end with "> " if it doesn't already.  
+	prompt.trim();
+	if (!prompt.endsWith(">"))
+	{
+		prompt += "> ";
+	}
 }
 
-void SerialUI::passFunction(uiFunctionPointer functionPointer) 
+void SerialUI::init(bool QuickInit)
 {
-  // Call the passed function pointer
-  functionPointer();
+	// Initializes without showing the banner
+	if (!QuickInit)
+	{
+		Serial.println(banner);
+	}
+	Serial.print(prompt);
 }
 
 void SerialUI::serialRead()
@@ -68,34 +82,34 @@ void SerialUI::analyzeInput(String str)
 	incomingString = "";
 	//str.toLowerCase();
 
-	if (str == "help")
+	if (str == "help" || str == "?")
 	{
 		showHelpMenu();
 	}
 	else if (checkCmd(str, "addCmd"))
 	{
-		Serial.println("addCmd is an internal public member.  Please use SerialUI.addCmd(keyword, functionName) in code to add a new command.\n");
+		Serial.println("addCmd is an internal public member.\n\tPlease use SerialUI.addCmd(keyword, functionName) in code to add a new command.\n");
 	}
 	else if (checkCmd(str, "rmCmd"))
 	{
-		Serial.println("rmCmd is an internal public member.  Please use SerialUI.rmCmd(keyword) in code to remove a command.\n");
+		Serial.println("rmCmd is an internal public member.\n\tPlease use SerialUI.rmCmd(keyword) in code to remove a command.\n");
 	}
 	else
 	{
 		// Search through the array for used keywords
-		for (int i = 0; i < sizeof(pointerList); i++)
+		for (int i = 0; i < cmdCount; i++)
 		{
 			if (checkCmd(str, pointerList[i].keyword))
 			{
 				//call the function
 				pointerList[i].functionPointer();
-				Serial.println(prompt);
+				Serial.print(prompt);
 				return;
 			}
 		}
 		// pointer not found, show some error.
-		Serial.println("ERROR - Command [ " + str + " ] not recognized.  Use [ help ] to view list of commands\n");
-		Serial.println(prompt);
+		Serial.println("ERROR - Command '" + str + "' not recognized.\n\tUse [ help ] to view list of commands\n");
+		Serial.print(prompt);
 		return;
 		
 	}
@@ -110,9 +124,9 @@ void SerialUI::showHelpMenu()
 
 	Serial.println("\nHelp Menu");
 
-	Serial.println("\t[ Builtin Commands ]");
+	Serial.println("\tBuiltin Commands:");
 	Serial.println("\t\thelp   addCmd   rmCmd\n");
-	Serial.println("\t[ User-Added Commands ]");
+	Serial.println("\tUser-Added Commands:");
 
 	if (cmdUsed < 1)
 	{
