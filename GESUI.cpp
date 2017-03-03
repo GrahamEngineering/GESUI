@@ -80,6 +80,7 @@ void GESUI::serialRead()
 
 void GESUI::_analyzeInput(String str)
 {
+	_incomingString = "";
 	//str.toLowerCase();
 
 	if (str == "")
