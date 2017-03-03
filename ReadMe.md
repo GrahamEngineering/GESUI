@@ -11,16 +11,16 @@ This library is configured primarily for the NodeMCU v1.0-ish ESP8266 ESP-12E bo
 
 Then again, I'm not a programmer so what the hell do I know?
 
-## SerialUI Library
+## GESUI Library
 
-### SerialUI::SerialUI()
+### GESUI::GESUI()
 Instantiate an object with the default banner and prompt
 * _Default Banner: Graham Engineering Serial User Interface_
 * _Default prompt: (gesui)_
 
 __Example:__
 ```
-SerialUI myUI = SerialUI();
+GESUI myUI = GESUI();
 
 void setup()
 {
@@ -35,13 +35,13 @@ void loop()
 
 Wow, that was difficult.
 
-You can also set a custom prompt [SerialUI::SerialUI(String p)]
+You can also set a custom prompt [GESUI::GESUI(String p)]
 
-And even a custom prompt and banner [SerialUI::SerialUI(String p, String b)]
+And even a custom prompt and banner [GESUI::GESUI(String p, String b)]
 
 __Example:__
 ```
-SerialUI myUI = SerialUI("C:\\", "Marcrosorft Worndorws Embedded");
+GESUI myUI = GESUI("C:\\", "Marcrosorft Worndorws Embedded");
 
 void setup()
 {
@@ -54,13 +54,13 @@ void loop()
 }
 ```
 
-### SerialUI::init()
+### GESUI::init()
 Call to show initial banner and command prompt
 * _Typically called once, in the setup()_
 
 __Example:__
 ```
-SerialUI myUI = SerialUI();
+GESUI myUI = GESUI();
 
 void setup()
 {
@@ -77,7 +77,7 @@ _You can override showing the banner by using the quickInit feature of the init(
 
 __Example:__
 ```
-SerialUI myUI = SerialUI();
+GESUI myUI = GESUI();
 
 void setup()
 {
@@ -91,7 +91,7 @@ void loop()
 ```
 
 
-### SerialUI::serialRead();
+### GESUI::serialRead();
 This command should be called on every loop iteration to check for user input via serial
 
 * _Currently serialEvent() is not supported on ESP8266 (3 Mar 2017) so this is the way it is.  Deal with it._
@@ -99,7 +99,7 @@ This command should be called on every loop iteration to check for user input vi
 
 Example:
 ```
-SerialUI myUI = SerialUI();
+GESUI myUI = GESUI();
 
 void setup()
 {
@@ -112,7 +112,7 @@ void loop()
 }
 ```
 
-### SerialUI::addCmd(String keywd, uiFunctionPointer ptr)
+### GESUI::addCmd(String keywd, uiFunctionPointer ptr)
 Used to add a command to the user interface
 
 * _keywd is the keyword the user will type (the command)_
@@ -121,7 +121,7 @@ Used to add a command to the user interface
 __Example:__
 ```
 int myInt = 103;
-SerialUI myUI = SerialUI();
+GESUI myUI = GESUI();
 
 void setup()
 {
@@ -141,7 +141,7 @@ void showVal()
 }
 ```
 
-### SerialUI::rmCmd(String keywd)
+### GESUI::rmCmd(String keywd)
 Used to remove commands from the user interface.
 
 * _Not sure why you would need it, but it exists_
@@ -151,7 +151,7 @@ Used to remove commands from the user interface.
 __Example:__
 ```
 int myInt = 103;
-SerialUI myUI = SerialUI();
+GESUI myUI = GESUI();
 
 void setup()
 {

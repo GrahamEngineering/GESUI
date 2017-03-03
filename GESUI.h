@@ -6,8 +6,8 @@
 	
 	See example sketch for usage
 */
-#ifndef SerialUI_h
-#define SerialUI_h
+#ifndef GESUI_h
+#define GESUI_h
 
 #include "Arduino.h"
 
@@ -21,12 +21,12 @@ typedef struct uiPointer
 };
 
 
-class SerialUI
+class GESUI
 {
 	public:
-		SerialUI();
-		SerialUI(String);
-		SerialUI(String, String);
+		GESUI();
+		GESUI(String);
+		GESUI(String, String);
 		void serialRead();
 		bool addCmd(String, uiFunctionPointer);
 		bool rmCmd(String);

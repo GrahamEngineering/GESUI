@@ -5,22 +5,22 @@
 	Create a simple command interface for your Arduino with callback functions
 */
 #include "Arduino.h"
-#include "SerialUI.h"
+#include "GESUI.h"
 
-SerialUI::SerialUI()
+GESUI::GESUI()
 {
 	// instantiate object
 	// Serial output isn't called because the object should be instantiated before Serial.begin() is called.
-	//	User can manually call SerialUI.init() to show initial command _prompt and _banner
+	//	User can manually call GESUI.init() to show initial command _prompt and _banner
 }
 
-SerialUI::SerialUI(String p)
+GESUI::GESUI(String p)
 {
 	// Allow the capability to set a command _prompt word (instead of default 'gesui')
 	_prompt = p + "> ";
 }
 
-SerialUI::SerialUI(String p, String b)
+GESUI::GESUI(String p, String b)
 {
 	// Set a custom command _prompt and _banner
 	_banner = b;
@@ -34,7 +34,7 @@ SerialUI::SerialUI(String p, String b)
 	}
 }
 
-void SerialUI::init(bool quickInit)
+void GESUI::init(bool quickInit)
 {
 	// Initializes without showing the _banner
 	if (!quickInit)
@@ -44,7 +44,7 @@ void SerialUI::init(bool quickInit)
 	Serial.print(_prompt);
 }
 
-void SerialUI::serialRead()
+void GESUI::serialRead()
 {
 	/*
 		This is the main part of the class.  Call this on a loop to read serial input and act accordingly.
@@ -78,7 +78,7 @@ void SerialUI::serialRead()
 	}
 }
 
-void SerialUI::_analyzeInput(String str)
+void GESUI::_analyzeInput(String str)
 {
 	_incomingString = "";
 	//str.toLowerCase();
@@ -89,11 +89,11 @@ void SerialUI::_analyzeInput(String str)
 	}
 	else if (_checkCmd(str, "addCmd"))
 	{
-		Serial.println("addCmd is an internal public member.\n\tPlease use SerialUI.addCmd(keyword, functionName) in code to add a new command.\n");
+		Serial.println("addCmd is an internal public member.\n\tPlease use GESUI.addCmd(keyword, functionName) in code to add a new command.\n");
 	}
 	else if (_checkCmd(str, "rmCmd"))
 	{
-		Serial.println("rmCmd is an internal public member.\n\tPlease use SerialUI.rmCmd(keyword) in code to remove a command.\n");
+		Serial.println("rmCmd is an internal public member.\n\tPlease use GESUI.rmCmd(keyword) in code to remove a command.\n");
 	}
 	else
 	{
@@ -118,7 +118,7 @@ void SerialUI::_analyzeInput(String str)
 	Serial.print(_prompt);
 }
 
-bool SerialUI::_checkCmd(String inputStr, String matchStr)
+bool GESUI::_checkCmd(String inputStr, String matchStr)
 {
 	if (inputStr == matchStr || inputStr.startsWith(matchStr + " "))
 	{
@@ -130,7 +130,7 @@ bool SerialUI::_checkCmd(String inputStr, String matchStr)
 	}
 }
 
-void SerialUI::_showHelpMenu()
+void GESUI::_showHelpMenu()
 {
 	const int itemsPerLine = 5;
 	String keywordLine;
@@ -156,7 +156,7 @@ void SerialUI::_showHelpMenu()
 	Serial.println("");
 }
 
-bool SerialUI::addCmd(String keywd, uiFunctionPointer ptr)
+bool GESUI::addCmd(String keywd, uiFunctionPointer ptr)
 {
 	// look for the index of the keyword, make sure it doesn't exist.
 	// add the keyword and funcptr to the arrays
@@ -189,7 +189,7 @@ bool SerialUI::addCmd(String keywd, uiFunctionPointer ptr)
 	}
 }
 
-bool SerialUI::rmCmd(String keywd)
+bool GESUI::rmCmd(String keywd)
 {
 	/*
 		Testing data from Example .ino
