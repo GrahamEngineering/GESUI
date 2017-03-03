@@ -1,0 +1,6 @@
+SerialUI	KEYWORD1
+
+init	KEYWORD2
+serialRead	KEYWORD2
+addCmd	KEYWORD2
+rmCmd	KEYWORD2
