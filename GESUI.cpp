@@ -80,13 +80,13 @@ void GESUI::serialRead()
 
 void GESUI::_analyzeInput(String str)
 {
-	_incomingString = "";
 	//str.toLowerCase();
 
 	if (str == "")
 	{
 		// User has entered a carriage return
-		// Serial.println(_prompt);
+		Serial.println(_prompt);
+		return;
 	}
 	else if (str == "help" || str == "?")
 	{
@@ -119,8 +119,6 @@ void GESUI::_analyzeInput(String str)
 		return;
 		
 	}
-	str = "";
-	Serial.print(_prompt);
 }
 
 bool GESUI::_checkCmd(String inputStr, String matchStr)
