@@ -83,7 +83,12 @@ void GESUI::_analyzeInput(String str)
 	_incomingString = "";
 	//str.toLowerCase();
 
-	if (str == "help" || str == "?")
+	if (str == "")
+	{
+		// User has entered a carriage return
+		// Serial.println(_prompt);
+	}
+	else if (str == "help" || str == "?")
 	{
 		_showHelpMenu();
 	}
