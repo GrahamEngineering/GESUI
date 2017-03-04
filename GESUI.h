@@ -28,9 +28,11 @@ class GESUI
 		GESUI(String);
 		GESUI(String, String);
 		void serialRead();
+		String getInput();
 		bool addCmd(String, uiFunctionPointer);
 		bool rmCmd(String);
 		void init(bool quickInit = false);
+		void println(String);
 		
 
 	private:

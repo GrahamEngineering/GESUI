@@ -78,6 +78,33 @@ void GESUI::serialRead()
 	}
 }
 
+String GESUI::getInput()
+{
+	// Waits for input from user.  Returns it as a string
+	char incomingByte;
+	String getString = "";
+	boolean stringComplete = false;
+	
+	while (!stringComplete)
+	{
+		while (Serial.available() > 0)
+		{
+			incomingByte = (char)Serial.read();
+			
+			if (incomingByte == '\n' || incomingByte == '\r')
+			{
+				stringComplete = true;
+			}
+			else
+			{
+				getString += incomingByte;
+			}
+		}
+	}
+	
+	return getString;
+}
+
 void GESUI::_analyzeInput(String str)
 {
 	_incomingString = "";
@@ -254,4 +281,11 @@ bool GESUI::rmCmd(String keywd)
 		// No matching keyword was found in the stuct.  Return false.
 		return false;
 	}
+}
+
+void GESUI::println(String msg)
+{
+	Serial.println();
+	Serial.println(msg);
+	Serial.print(_prompt);
 }
