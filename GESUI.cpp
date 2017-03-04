@@ -177,7 +177,7 @@ bool GESUI::addCmd(String keywd, uiFunctionPointer ptr)
 		}
 	}
 	
-	if (!cmdExists)
+	if (!cmdExists && (_cmdUsed != _cmdMax))
 	{
 		// The cmd does not yet exist, add it.
 		uiPointer addPointer;

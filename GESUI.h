@@ -34,7 +34,7 @@ class GESUI
 		
 
 	private:
-		static const int _cmdMax = 10;
+		static const int _cmdMax = 20;
 		String _banner = "Graham Engineering Serial UI - Version 0.2";
 		String _prompt = "gesui> ";
 		uiPointer _pointerList[_cmdMax];
