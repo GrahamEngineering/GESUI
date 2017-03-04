@@ -170,7 +170,16 @@ void showVal()
 	Serial.println("The value of myInt is: " + String(myInt, DEC));
 }
 ```
+### GESUI::println(String msg)
+Used to print a new line to the serial console and then follow up with the \_prompt
+__Example:__
+```
+GESUI myUI = GESUI();
+
+myUI.println("[INFO] Error 2203 - please check configuration values");
+```
+
 ## Note
 Gesui translates to "ditch" or "sewage" from Japanese.  That's what this software is.  Sewage.
 
-	_even sewage is a solution to some problems_
+_even sewage is a solution to some problems_
